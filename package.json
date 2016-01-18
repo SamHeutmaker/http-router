@@ -1,0 +1,30 @@
+{
+  "name": "http-framework",
+  "version": "1.0.0",
+  "description": "An http framework for CodeFellows 401",
+  "main": "og-server.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/**/*test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamHeutmaker/http-framework.git"
+  },
+  "author": "samheutmaker@gmail, ardian_46@hotmail.com, ho.joshua4@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SamHeutmaker/http-framework/issues"
+  },
+  "homepage": "https://github.com/SamHeutmaker/http-framework#readme",
+  "devDependencies": {
+    "nodemon": "^1.8.1",
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "eslint": "^1.10.3",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.3.4",
+    "superagent": "^1.6.1"
+  }
+}
