@@ -1,8 +1,8 @@
 {
   "name": "og-router",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An http framework for CodeFellows 401",
-  "main": "og-server.js",
+  "main": "og-router.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test/**/*test.js"
   },
