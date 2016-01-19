@@ -1,52 +1,119 @@
 //Unit testing for our server and router
 const Router = require( __dirname + '/../lib/og-router');
 const expect = require('chai').expect;
+const URI = '/test';
+var router = new Router();
 
-var URI = '/test';
+// Set up streaming ability
+var fakeStream = function(){
+	this.readable = true;
+	this.writeable = false;
+}
+require('util').inherits(fakeStream, require('stream'));
 
+// Extract args to `write` and emit as `data` event.
+fakeStream.prototype.write = function () {
+  args = Array.prototype.slice.call(arguments, 0);
+  this.emit.apply(this, ['data'].concat(args))
+};
+
+// Extract args to `end` and emit as `end` event.
+fakeStream.prototype.end = function () {
+  args = Array.prototype.slice.call(arguments, 0);
+  this.emit.apply(this, ['end'].concat(args))
+};
+
+
+// Router Testing
 describe('Router' , () => {
 
-	//Tests the router object
-	it('should have routes to fat stacks' , () => {
-		var router = new Router();
+	// Tests the router object
+	it('should have properties of a router' , (done) => {
 		expect(router).to.have.property('route');
 		expect(router.route).to.be.a('function');
+		done();
 	});
 
-	//
-	it('should register get requests like a gangsta' , () => { 
-		var router = new Router();
-		var testReq = {method: 'GET' , url: '/test'};
-
-		router.get(URI , ( req , res ) => {
-
-			expect(res.head).to.eql('')
-
+	// Test GET route
+	it('should register get requests' , (done) => { 
+		var testReq = {method: 'GET' , url: URI};
+		var testRes = new fakeStream();
+		testRes.writeHead =  function(string, obj){
+			this.status = string; this.head = obj
+		};
+		var called = false;
+		router.get(URI, 'test.html', ( req , res ) => {
+			expect(res.status).to.eql(200);
+			called = true;
+			done();
 		});
+		router.route()(testReq, testRes);
+		expect(called).to.equal(true);
 	});
 
-	// it('should be able to register post requests' , () => {
-	// 	var router = new Router();
-	// 	var testReq = {method: 'GET' , url: '/test'};
-
-	// 	router.post(URI , ( req , res ) => {
-
-	// 	});
-	// });
-
-	// it('should handle the 404 like a real nigga' , () => {
-	// 	var router = new Router();
-	// 	var toBeFourOhFour = router.route;
-
-	// 	//Expect the 404 function at a method with no definition
-	// 	expect( toBeFourOhFour('/test' , res) ).to.be.a('function');
-
-	// 	//Should receive a JSON object {msg: '404'};
-	// 	expect(res.msg).to.eql('404');
-
-	// 	// router.get(URI , ( req , res ) => {
-
-	// 	// });
-	// });
+	// Test POST route
+	it('should register post requests' , (done) => { 
+		var testReq = {method: 'POST' , url: URI};
+		var testRes = new fakeStream();
+		testRes.writeHead =  function(string, obj){
+			this.status = string; this.head = obj
+		};
+		var called = false;
+		router.post(URI, 'test.html', ( req , res ) => {
+			expect(res.status).to.eql(200);
+			called = true;
+			done();
+		});
+		router.route()(testReq, testRes);
+		expect(called).to.equal(true);
+	});
+		// Test PATCH route
+	it('should register post requests' , (done) => { 
+		var testReq = {method: 'PATCH' , url: URI};
+		var testRes = new fakeStream();
+		testRes.writeHead =  function(string, obj){
+			this.status = string; this.head = obj
+		};
+		var called = false;
+		router.patch(URI, 'test.html', ( req , res ) => {
+			expect(res.status).to.eql(200);
+			called = true;
+			done();
+		});
+		router.route()(testReq, testRes);
+		expect(called).to.equal(true);
+	});
+		// Test PUT route
+	it('should register post requests' , (done) => { 
+		var testReq = {method: 'PUT' , url: URI};
+		var testRes = new fakeStream();
+		testRes.writeHead =  function(string, obj){
+			this.status = string; this.head = obj
+		};
+		var called = false;
+		router.put(URI, 'test.html', ( req , res ) => {
+			expect(res.status).to.eql(200);
+			called = true;
+			done();
+		});
+		router.route()(testReq, testRes);
+		expect(called).to.equal(true);
+	});
+		// Test DELETE route
+	it('should register post requests' , (done) => { 
+		var testReq = {method: 'DELETE' , url: URI};
+		var testRes = new fakeStream();
+		testRes.writeHead =  function(string, obj){
+			this.status = string; this.head = obj
+		};
+		var called = false;
+		router.delete(URI, 'test.html', ( req , res ) => {
+			expect(res.status).to.eql(200);
+			called = true;
+			done();
+		});
+		router.route()(testReq, testRes);
+		expect(called).to.equal(true);
+	});
 });
 

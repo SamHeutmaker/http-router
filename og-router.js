@@ -21,9 +21,7 @@ var Router = module.exports = exports = function() {
         res.writeHead(404, {
           'Content-Type': this.contentType
         });
-        res.write(JSON.stringify({
-          msg: '404.'
-        }));
+        res.write('404. Page Not Found.');
         return res.end();
       }
     };

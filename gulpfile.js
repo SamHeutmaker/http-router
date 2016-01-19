@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
 
-var files = ['gulpfile.js', './test/og-test.js'];
+var files = ['gulpfile.js'];
 gulp.task('lint', function(){
   return gulp.src(files)
   .pipe(eslint({
@@ -38,7 +38,7 @@ gulp.task('lint', function(){
 });
 
 gulp.task('mocha', function(){
-  return gulp.src('test/*.js')
+  return gulp.src('test/og_unit_test.js')
   .pipe(mocha());
 });
 
