@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const og_server = require(__dirname + '../og-server');
+const ogServer = require(__dirname + '/../og-server');
 chai.use(chaiHttp);
 const expect = chai.expect;
 const request = chai.request;
@@ -8,7 +8,7 @@ var port = 'localhost:3000';
 
 describe('test for og-server', () => {
   it('should respond to a get request', (done) => {
-    .request(port)
+    request(port)
     .get('/test')
     .end((err, res) => {
       expect(err).to.eql(null);
@@ -18,7 +18,7 @@ describe('test for og-server', () => {
   });
 
   it('should respond to a post request', (done) => {
-    .request(port)
+    request(port)
     .post('/test')
     .end((err, res) => {
       expect(err).to.eql(null);
@@ -28,7 +28,7 @@ describe('test for og-server', () => {
   });
 
   it('should respond to a put request', (done) => {
-    .request(port)
+    request(port)
     .post('/test')
     .end((err, res) => {
       expect(err).to.eql(null);
@@ -38,7 +38,7 @@ describe('test for og-server', () => {
   });
 
   it('should respond to a patch request', (done) => {
-    .request(port)
+    request(port)
     .post('/test')
     .end((err, res) => {
       expect(err).to.eql(null);
@@ -48,7 +48,7 @@ describe('test for og-server', () => {
   });
 
   it('should respond to a delete request', (done) => {
-    .request(port)
+    request(port)
     .post('/test')
     .end((err, res) => {
       expect(err).to.eql(null);
