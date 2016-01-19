@@ -1,5 +1,5 @@
 //Unit testing for our server and router
-const Router = require( __dirname + '/../lib/og-router');
+const Router = require( __dirname + '/../og-router');
 const expect = require('chai').expect;
 const URI = '/test';
 var router = new Router();

@@ -1,6 +1,6 @@
 {
   "name": "og-router",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An http framework for CodeFellows 401",
   "main": "og-router.js",
   "scripts": {
