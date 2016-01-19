@@ -1,2 +1,2 @@
-# http-router
-An htttp routing framework
+# og-router
+A router to make your easy sites more quickly bootstrappable. (;
